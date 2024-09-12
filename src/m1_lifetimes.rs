@@ -5,6 +5,6 @@ mod tests {
 
     #[test]
     fn test_lifetimes() {
-        dbg!("LIFETIMES");
+        dbg!("LIFETIMES DEMO");
     }
 }
