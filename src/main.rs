@@ -1,9 +1,8 @@
 mod m1_enums;
 mod m1_structs;
 mod mi_traits;
-mod my_polymorph;
-mod m1_lifetimes;
-
+mod m1_structs_enums_Generics_lifetimes;
+mod m1_patternmatch;
 const COURSE: &str = "Rust with AutoGPT";
 
 fn main() {
