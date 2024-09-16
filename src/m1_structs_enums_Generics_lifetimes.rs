@@ -24,6 +24,7 @@ fn vehicle_summary<'a, T: std::fmt::Debug>(vehicle: &'a Vehicle<'a, T>) -> Strin
         Engine::Electric => "Electric",
         Engine::Hybrid => "Hybrid",
     };
+
     format!(
         "Make: {}, Model: {}, Year: {}, Engine: {}, Details: {:?}",
         vehicle.make, vehicle.model, vehicle.year, engine, vehicle.details

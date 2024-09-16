@@ -1,3 +1,4 @@
+
 enum Message {
     Quit,
     ChangeColour(i32, i32),
@@ -5,12 +6,12 @@ enum Message {
     Write(String),
 }
 
-fn process_message(msg: Message) {
+fn process_message(msg: Message) -> String {
     match msg {
-        Message::Quit => println!("Quit"),
-        Message::ChangeColour(r, g) => println!("Change colour from {} to {}", r, g),
-        Message::Move { x, y } => println!("Move to ({}, {})", x, y),
-        Message::Write(text) => println!("Write: {}", text),
+        Message::Quit => format!("Quit"),
+        Message::ChangeColour(r, g) => format!("Change colour from {} to {}", r, g),
+        Message::Move { x, y } => format!("Move to ({}, {})", x, y),
+        Message::Write(text) => format!("Write: {}", text),
     }
 }
 
@@ -19,18 +20,18 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_process_message() {
+    fn test_process_enum_message() {
         let msg_change_color = Message::ChangeColour(255, 0);
-        process_message(msg_change_color);
+        assert_eq!(process_message(msg_change_color), String::from("Change colour from 255 to 0"));
 
         let msg_move = Message::Move { x: 10, y: 20 };
-        process_message(msg_move);
+        assert_eq!(process_message(msg_move), "Move to (10, 20)");
 
         let msg_write = Message::Write("Hello, World!".to_string());
-        process_message(msg_write);
+        assert_eq!(process_message(msg_write), "Write: Hello, World!");
 
         let msg_quit = Message::Quit;
-        process_message(msg_quit);
+        assert_eq!(process_message(msg_quit), "Quit");
     }
 
     #[test]
@@ -57,6 +58,39 @@ mod tests {
         };
 
         dbg!("my_result is {}", my_result);
+    }
+
+    #[test]
+    fn test_match_guard() {
+        let pair = (2, -2);
+        match pair {
+            (x, y) if x > 0 && y > 0 => println!("Both numbers are positive"),
+            (x, y) if x < 0 && y < 0 => println!("Both numbers are negative"),
+            (x, y) if x == 0 || y == 0 => println!("One number is zero"),
+            (x, y) if x == 2 && y == -2 => println!("Two numbers match"),
+            _ => println!("Neither number is zero nor positive or negative"),
+        }
+    }
+
+    #[test]
+    fn test_match_struct() {
+        #[derive(PartialEq, Debug)]
+        enum Location_Type {
+            Point,
+            Line,
+            Polygon,
+        }
+        #[derive(PartialEq, Debug)]
+        struct Location {
+            x: i32,
+            y: i32,
+            loc_type: Location_Type
+        }
+
+        let name = String::new();
+        let loc1 = Location { x: 1, y: 2, loc_type: Location_Type::Line};
+        let loc2 = Location { x: 1, y: 2, loc_type: Location_Type::Polygon};
+        assert_eq!(loc1, loc2);
     }
 
 
