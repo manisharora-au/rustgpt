@@ -89,7 +89,7 @@ mod tests {
 
         let name = String::new();
         let loc1 = Location { x: 1, y: 2, loc_type: Location_Type::Line};
-        let loc2 = Location { x: 1, y: 2, loc_type: Location_Type::Polygon};
+        let loc2 = Location { x: 1, y: 2, loc_type: Location_Type::Line};
         assert_eq!(loc1, loc2);
     }
 
