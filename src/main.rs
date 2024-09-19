@@ -3,7 +3,8 @@ mod m1_structs;
 mod mi_traits;
 mod m1_structs_enums_Generics_lifetimes;
 mod m1_patternmatch;
-mod m1_asynch;
+mod m1_async_call_and_error_conversion;
+mod m1_collections;
 
 const COURSE: &str = "Rust with AutoGPT";
 
